@@ -1,15 +1,12 @@
 package com.xeven.sistemaventas.controller;
 
-import com.xeven.sistemaventas.domain.producto.DatosListadoProducto;
-import com.xeven.sistemaventas.domain.producto.DatosRegistroProducto;
-import com.xeven.sistemaventas.domain.producto.Producto;
-import com.xeven.sistemaventas.domain.producto.ProductoRepository;
+import com.xeven.sistemaventas.domain.producto.*;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/productos")
@@ -30,4 +27,17 @@ public class ProductoController {
         return productosPaginados.map(DatosListadoProducto::new);
     }
 
+    @PutMapping
+    @Transactional
+    public void actualizarProducto(@RequestBody @Valid DatosActualizarProducto datosActualizarProducto) {
+        Producto producto = productoRepository.getReferenceById(datosActualizarProducto.idProducto());
+        producto.actualizarDatos(datosActualizarProducto );
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void eliminarProducto(@PathVariable Integer id) {
+        Producto producto = productoRepository.getReferenceById(id);
+        productoRepository.delete(producto);
+    }
 }

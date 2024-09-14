@@ -33,4 +33,20 @@ public class Cliente {
         this.email = datosRegistroCliente.email();
         this.createAt = LocalDateTime.now();
     }
+
+    public void actualizarCliente(DatosActualizarCliente datosActualizarCliente) {
+
+        if (datosActualizarCliente.nombres() != null) {
+            this.nombres = datosActualizarCliente.nombres();
+        }
+        if (datosActualizarCliente.apellidos() != null) {
+            this.apellidos = datosActualizarCliente.apellidos();
+        }
+        if (datosActualizarCliente.nroDocumento() != null) {
+            this.nroDocumento = datosActualizarCliente.nroDocumento();
+        }
+        if (datosActualizarCliente.email() != null) {
+            this.email = datosActualizarCliente.email();
+        }
+    }
 }

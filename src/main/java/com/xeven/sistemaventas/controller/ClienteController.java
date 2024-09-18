@@ -1,6 +1,7 @@
 package com.xeven.sistemaventas.controller;
 
 import com.xeven.sistemaventas.domain.cliente.*;
+import com.xeven.sistemaventas.repository.ClienteRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

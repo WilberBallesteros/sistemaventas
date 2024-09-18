@@ -1,9 +1,12 @@
 package com.xeven.sistemaventas.domain.cliente;
 
+import com.xeven.sistemaventas.domain.venta.Venta;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "clientes")
 @Entity
@@ -25,6 +28,9 @@ public class Cliente {
     private String email;
     @Column(name = "create_at")
     private LocalDateTime createAt;
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Venta> ventas = new ArrayList<>();
 
     public Cliente(DatosRegistroCliente datosRegistroCliente) {
         this.nombres = datosRegistroCliente.nombres();
